@@ -6,7 +6,16 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 from PIL import Image
 from flask_cors import CORS
-
+import time
+for attempt in range(5):
+    try:
+        response = model.generate_content(prompt)
+        break
+    except Exception as e:
+        if "429" in str(e) or "503" in str(e):
+            time.sleep(2 ** attempt)
+        else:
+            raise
 import tempfile
 
 # Dynamically construct absolute paths to avoid Vercel Serverless cwd issues
