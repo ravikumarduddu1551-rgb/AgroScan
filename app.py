@@ -34,7 +34,7 @@ if api_key:
     genai.configure(api_key=api_key)
 
 try:
-    model = genai.GenerativeModel('gemini-2.5-flash')
+    model = genai.GenerativeModel("gemini-3.8-flash")
 except Exception as e:
     model = None
     print(f"Error initializing model: {e}")
